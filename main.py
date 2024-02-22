@@ -1,13 +1,17 @@
 import sys
+import os
 from Adafruit_IO import MQTTClient
 import random
 import time
+from dotenv import load_dotenv, dotenv_values
 from ai import *
 from uart import *
 
-AIO_FEED_IDs = ["button1", "button2"]
-AIO_USERNAME = "stryz_0709"
-AIO_KEY = "aio_vvtV71XdBCnicXHkvqYCVlSjU3vX"
+load_dotenv()
+
+AIO_FEED_IDs = os.getenv("ids")
+AIO_USERNAME = os.getenv("username")
+AIO_KEY = os.getenv("key")
 
 def connected(client):
     print("Ket noi thanh cong ...")
