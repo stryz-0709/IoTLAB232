@@ -3,15 +3,15 @@ import os
 from Adafruit_IO import MQTTClient
 import random
 import time
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 from ai import *
 from uart import *
 
 load_dotenv()
 
-AIO_FEED_IDs = os.getenv("ids")
-AIO_USERNAME = os.getenv("username")
-AIO_KEY = os.getenv("key")
+AIO_FEED_IDs = os.getenv("IDS")
+AIO_USERNAME = os.getenv("USERNAME")
+AIO_KEY = os.getenv("ADA_KEY")
 
 def connected(client):
     print("Ket noi thanh cong ...")
@@ -27,6 +27,14 @@ def disconnected(client):
 
 def message(client , feed_id , payload):
     print("Nhan du lieu: " + payload + " , feed id: " + feed_id)
+    if feed_id == "button1":
+        if payload == "0":
+            writeData("1")
+        else: writeData("2")
+    if feed_id == "button2":
+        if payload == "0":
+            writeData("3")
+        else: writeData("4")
 
 client = MQTTClient(AIO_USERNAME , AIO_KEY)
 client.on_connect = connected
