@@ -2,7 +2,7 @@
 
 ### Open virutal port
 ```
-socat -d -d pty,raw,echo=1 pty,b115200,raw,echo=1
+socat -d -d pty,raw,echo=1 pty,raw,echo=1
 ```
 
 ### Receive data
