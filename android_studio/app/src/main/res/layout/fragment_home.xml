@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/White"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/layout_today"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="55dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/currentDay"
+            android:textSize="40sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text=""
+            android:textColor="@color/Ocean_Blue"/>
+
+        <TextView
+            android:id="@+id/currentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:text=""
+            android:textColor="@color/Iceberg"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White"
+        android:layout_below="@+id/layout_today"
+        android:layout_marginTop="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/constraintLayout"
+            android:layout_marginTop="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_info_layout"
+                tools:ignore="MissingConstraints">
+
+                <!--Center shim-->
+                <View
+                    android:id="@+id/centerShim"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:visibility="invisible"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="-30dp"
+                    android:layout_centerHorizontal="true"/>
+
+                <!--Temperature Card-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_toStartOf="@id/centerShim"
+                    app:cardElevation="10dp"
+                    android:id="@+id/tempCard"
+                    app:cardCornerRadius="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!--Top half-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/topTemp"
+                            android:background="@color/Sunrise_Orange">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:id="@+id/tempText"
+                                android:text="Temperature"
+                                android:textColor="@color/White"
+                                android:textSize="26sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+
+                        <!--Bottom half-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/topTemp"
+                            android:id="@+id/botTemp"
+                            android:background="@color/White">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/temp"
+                                    android:textStyle="bold"
+                                    android:text="-"
+                                    android:textColor="@color/Black"
+                                    android:textSize="30sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textStyle="bold"
+                                    android:text="ºC"
+                                    android:textColor="@color/Black"
+                                    android:textSize="30sp" />
+
+
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!--Humidity Card-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_toStartOf="@id/centerShim"
+                    android:layout_below="@id/tempCard"
+                    app:cardElevation="10dp"
+                    android:id="@+id/humidCard"
+                    app:cardCornerRadius="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!--Top half-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/topHumid"
+                            android:background="@color/Ocean_Blue">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="Humidity"
+                                android:textColor="@color/White"
+                                android:textSize="26sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <!--Bottom half-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/topHumid"
+                            android:id="@+id/botHumid"
+                            android:background="@color/White">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/humid"
+                                    android:textStyle="bold"
+                                    android:text="-"
+                                    android:textColor="@color/Black"
+                                    android:textSize="30sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textStyle="bold"
+                                    android:text="%"
+                                    android:textColor="@color/Black"
+                                    android:textSize="30sp" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!--Light Card-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_toStartOf="@id/centerShim"
+                    android:layout_below="@id/humidCard"
+                    app:cardElevation="10dp"
+                    android:id="@+id/lightCard"
+                    app:cardCornerRadius="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!--Top half-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/topLight"
+                            android:background="@color/Bright_Gold">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="Light"
+                                android:textColor="@color/White"
+                                android:textSize="26sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <!--Bottom half-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/topLight"
+                            android:id="@+id/botLight"
+                            android:background="@color/White">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/light"
+                                    android:textStyle="bold"
+                                    android:text="-"
+                                    android:textColor="@color/Black"
+                                    android:textSize="30sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textStyle="bold"
+                                    android:text="%"
+                                    android:textColor="@color/Black"
+                                    android:textSize="30sp" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!--Button 1 Card-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_toEndOf="@id/centerShim"
+                    app:cardElevation="10dp"
+                    android:id="@+id/button1Card"
+                    app:cardCornerRadius="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/button1Text"
+                            android:text="Button 1"
+                            android:textColor="@color/Black"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <com.github.angads25.toggle.widget.LabeledSwitch
+                            android:id="@+id/button1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/button1Text"
+                            android:layout_marginRight="40dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textSize="18sp"
+                            app:on="false"
+                            app:textOn="ON"
+                            app:textOff="OFF"
+                            app:colorOn="#00c4a6"
+                            app:colorBorder="#00c4a6" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!--Button 2 Card-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_toEndOf="@id/centerShim"
+                    app:cardElevation="10dp"
+                    android:id="@+id/button2Card"
+                    android:layout_below="@id/button1Card"
+                    app:cardCornerRadius="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/button2Text"
+                            android:text="Button 2"
+                            android:textColor="@color/Black"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+
+                        <com.github.angads25.toggle.widget.LabeledSwitch
+                            android:id="@+id/button2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/button2Text"
+                            android:layout_marginRight="40dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textSize="18sp"
+                            app:on="false"
+                            app:textOn="ON"
+                            app:textOff="OFF"
+                            app:colorOn="#00c4a6"
+                            app:colorBorder="#00c4a6" />
+
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/blankCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/lightCard"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardElevation="0dp"/>
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
