@@ -27,13 +27,13 @@ def disconnected(client):
 
 def message(client , feed_id , payload):
     print("Nhan du lieu: " + payload + " , feed id: " + feed_id)
-    if feed_id == "button1":
-        print("Button1")
+    # if feed_id == "button1":
+    #     print("Button1")
         # if payload == "0":
             # writeData("1")
         # else: writeData("2")
-    elif feed_id == "button2":
-        print("Button2")
+    # elif feed_id == "button2":
+    #     print("Button2")
         # if payload == "0":
             # writeData("3")
         # else: writeData("4")
@@ -52,30 +52,30 @@ sensor_type = 0
 while True:
     counter = counter - 1
     if counter <= 0:
-        counter = 3
+        counter = 10
         print("Random data is publishing")
         if sensor_type == 0:
-            print("Temperature...")
             temp = random.randint(10,30)
+            print("Temperature: ", temp)
             client.publish("sensor1", temp)
             sensor_type = 1
         elif sensor_type == 1:
-            print("Humidity...")
             humid = random.randint(50,70)
+            print("Humidity: ", humid)
             client.publish("sensor2", humid)
             sensor_type = 2
         elif sensor_type == 2:
-            print("Light...")
             light = random.randint(100,500)
+            print("Light: ", light)
             client.publish("sensor3", light)
             sensor_type = 0
 
-    # counter_ai = counter_ai - 1
-    # if counter_ai <= 0:
-    #     counter_ai = 5
-    #     ai_result = image_detector()
-    #     print("Output: ", ai_result)
-    #     client.publish("ai", ai_result)
+    counter_ai = counter_ai - 1
+    if counter_ai <= 0:
+        counter_ai = 5
+        ai_result = image_detector()
+        print("Output: ", ai_result)
+        client.publish("ai", ai_result)
 
     # readSerial(client)
     time.sleep(1)
