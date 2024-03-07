@@ -102,8 +102,8 @@ public class HomeFragment extends Fragment {
                                 temp.setText(sensorData.temp);
                                 humid.setText(sensorData.humid);
                                 light.setText(sensorData.light);
-                                button1.setOn(Objects.equals(sensorData.button1, "1"));
-                                button1.setOn(Objects.equals(sensorData.button2, "1"));
+                                button1.setOn(sensorData.button1 == "1");
+                                button2.setOn(sensorData.button2 == "1");
                             }
                         });
 

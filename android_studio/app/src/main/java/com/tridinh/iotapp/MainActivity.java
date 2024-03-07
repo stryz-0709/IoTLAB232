@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             client = new MqttClient("tcp://io.adafruit.com:1883","123456789", new MemoryPersistence());
             MqttConnectOptions connectOptions = new MqttConnectOptions();
             connectOptions.setUserName("stryz_0709");
-            connectOptions.setPassword("aio_JcLI78Fa5S9sHnsJfxCArbsLZgJW".toCharArray());
+            connectOptions.setPassword("aio_fNfx39uGm4iyD8e3bYnYzhUIOIe7".toCharArray());
             connectOptions.setCleanSession(true);
             client.connect(connectOptions);
             subscribeToTopic();
