@@ -9,7 +9,7 @@ from ai import *
 
 load_dotenv()
 
-AIO_FEED_IDs = os.getenv("IDS")
+AIO_FEED_IDs = ["button1", "button2"]
 AIO_USERNAME = os.getenv("USERNAME")
 AIO_KEY = os.getenv("ADA_KEY")
 

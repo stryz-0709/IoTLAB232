@@ -40,6 +40,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
+import java.nio.charset.Charset;
+
 public class MainActivity extends AppCompatActivity {
 
     ProgressDialog progressDialog;
@@ -87,9 +89,10 @@ public class MainActivity extends AppCompatActivity {
             client = new MqttClient("tcp://io.adafruit.com:1883","123456789", new MemoryPersistence());
             MqttConnectOptions connectOptions = new MqttConnectOptions();
             connectOptions.setUserName("stryz_0709");
-            connectOptions.setPassword("aio_fNfx39uGm4iyD8e3bYnYzhUIOIe7".toCharArray());
+            connectOptions.setPassword("aio_Avbd78J53KSbtLl6M7lQ7MYMZ2Qt".toCharArray());
             connectOptions.setCleanSession(true);
             client.connect(connectOptions);
+            Toast.makeText(MainActivity.this, "Connected", Toast.LENGTH_SHORT).show();
             subscribeToTopic();
         } catch (MqttException e) {
             Toast.makeText(MainActivity.this, "No signal", Toast.LENGTH_SHORT).show();
@@ -163,9 +166,9 @@ public class MainActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
 
         TextView navName = (TextView) headerView.findViewById(R.id.nav_name);
-        navName.setText("Tri Dinh");
+        navName.setText("Group 1");
         TextView navEmail = (TextView) headerView.findViewById(R.id.nav_email);
-        navEmail.setText("userInfo@email.com");
+        navEmail.setText("group1@iot232.com");
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setBackground(null);
@@ -247,25 +250,20 @@ public class MainActivity extends AppCompatActivity {
         return this.sensorData;
     }
 
-    public void buttonPressed(int btn){
-        if (btn == 1){
-            try {
-                MqttMessage button1 = new MqttMessage(String.valueOf(sensorData.button1).getBytes());
-                client.publish("button1", "0".getBytes() , 0, true);
-            } catch (MqttException e) {
-                e.printStackTrace();
-            }
+    public void sendDataMQTT(String topic, String value){
+        MqttMessage msg = new MqttMessage();
+        msg.setId(1234);
+        msg.setQos(0);
+        msg.setRetained(false);
+
+        byte[] b = value.getBytes(Charset.forName("UTF-8"));
+        msg.setPayload(b);
+
+        try {
+            client.publish(topic, msg);
+        }catch (MqttException e){
+            e.printStackTrace();
         }
-        else if (btn == 2){
-            try {
-                MqttMessage button2 = new MqttMessage(String.valueOf(sensorData.button2).getBytes());
-                client.publish("button2", button2);
-            } catch (MqttException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-
     }
+
 }

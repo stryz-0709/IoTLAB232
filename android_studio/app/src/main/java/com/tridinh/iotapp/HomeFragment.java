@@ -68,14 +68,16 @@ public class HomeFragment extends Fragment {
         button1.setOnToggledListener(new OnToggledListener() {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
-                mainActivity.buttonPressed(1);
+                mainActivity.sendDataMQTT("button1", String.valueOf(button1.isOn()));
+                button1.setOn(!button1.isOn());
             }
         });
 
         button2.setOnToggledListener(new OnToggledListener() {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
-                mainActivity.buttonPressed(2);
+                mainActivity.sendDataMQTT("button2", String.valueOf(button2.isOn()));
+                button1.setOn(!button2.isOn());
             }
         });
 
@@ -102,8 +104,6 @@ public class HomeFragment extends Fragment {
                                 temp.setText(sensorData.temp);
                                 humid.setText(sensorData.humid);
                                 light.setText(sensorData.light);
-                                button1.setOn(sensorData.button1 == "1");
-                                button2.setOn(sensorData.button2 == "1");
                             }
                         });
 
