@@ -68,16 +68,28 @@ public class HomeFragment extends Fragment {
         button1.setOnToggledListener(new OnToggledListener() {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
-                mainActivity.sendDataMQTT("button1", String.valueOf(button1.isOn()));
-                button1.setOn(!button1.isOn());
+                if (Objects.equals(sensorData.button1, "1")){
+                    mainActivity.sendDataMQTT("stryz_0709/feeds/button1", "0");
+                    sensorData.button1 = "0";
+                }
+                else{
+                    mainActivity.sendDataMQTT("stryz_0709/feeds/button1", "1");
+                    sensorData.button1 = "1";
+                }
             }
         });
 
         button2.setOnToggledListener(new OnToggledListener() {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
-                mainActivity.sendDataMQTT("button2", String.valueOf(button2.isOn()));
-                button1.setOn(!button2.isOn());
+                if (Objects.equals(sensorData.button2, "1")){
+                    mainActivity.sendDataMQTT("stryz_0709/feeds/button2", "0");
+                    sensorData.button2 = "0";
+                }
+                else{
+                    mainActivity.sendDataMQTT("stryz_0709/feeds/button2", "1");
+                    sensorData.button2 = "1";
+                }
             }
         });
 
@@ -104,6 +116,8 @@ public class HomeFragment extends Fragment {
                                 temp.setText(sensorData.temp);
                                 humid.setText(sensorData.humid);
                                 light.setText(sensorData.light);
+                                button1.setOn(Objects.equals(sensorData.button1, "1"));
+                                button2.setOn(Objects.equals(sensorData.button2, "1"));
                             }
                         });
 

@@ -41,6 +41,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     android.widget.EditText temp;
 
-    public final String[] topics = {"stryz_0709/feeds/sensor1", "stryz_0709/feeds/sensor2", "stryz_0709/feeds/sensor3"};
+    public final String[] topics = {"stryz_0709/feeds/sensor1", "stryz_0709/feeds/sensor2", "stryz_0709/feeds/sensor3", "stryz_0709/feeds/button1", "stryz_0709/feeds/button2"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 //        homeFragment.temp.setText("30");
         /////MQTT
         try {
-            client = new MqttClient("tcp://io.adafruit.com:1883","123456789", new MemoryPersistence());
+            client = new MqttClient("tcp://io.adafruit.com:1883","myiotapp", new MemoryPersistence());
             MqttConnectOptions connectOptions = new MqttConnectOptions();
             connectOptions.setUserName("stryz_0709");
             connectOptions.setPassword("aio_Avbd78J53KSbtLl6M7lQ7MYMZ2Qt".toCharArray());
@@ -122,10 +123,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (topic.contains("button1")){
                     sensorData.button1 = message.toString();
+//                    homeFragment.button1.setOn(true);
                     Log.d("BUTTON1", message.toString());
                 }
                 else if (topic.contains("button2")){
                     sensorData.button2 = message.toString();
+//                    homeFragment.button1.setOn(true);
                     Log.d("BUTTON2", message.toString());
                 }
             }
@@ -262,6 +265,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             client.publish(topic, msg);
         }catch (MqttException e){
+            Log.d("SEND","CANNOT SEND");
             e.printStackTrace();
         }
     }
